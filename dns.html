@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公共DNS解析器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #ecf0f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        .language-selector {
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .profile span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function changeLanguage(lang) {
+            document.querySelectorAll('.content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(lang).classList.remove('hidden');
+        }
+    </script>
+</head>
+<body>
+    <div class="profile">
+        <img src="https://example.com/your-avatar.jpg" alt="Avatar">
+        <span>Le Swinton</span>
+    </div>
+
+    <div class="language-selector">
+        <button onclick="changeLanguage('de')">Deutsch</button>
+        <button onclick="changeLanguage('en')">English</button>
+        <button onclick="changeLanguage('fr')">Français</button>
+        <button onclick="changeLanguage('zh')">中文</button>
+    </div>
+    
+    <div id="de" class="content hidden">
+        <h1>Informationen und Konfigurationsanleitungen</h1>
+        <h2>Was ist DoH (DNS over HTTPS)?</h2>
+        <p>DNS over HTTPS (DoH) ist ein Protokoll, das die Kommunikation zwischen DNS-Clients und -Servern mithilfe des HTTPS-Protokolls verschlüsselt und authentifiziert...</p>
+        <h2>Unsere DoH-Server</h2>
+        <p>Kein Logging, DNSSEC aktiviert.</p>
+        <h2>So verwenden Sie DoH:</h2>
+        <ul>
+            <li>Öffnen Sie die „Einstellungen“-App</li>
+            <li>Gehen Sie zu Netzwerk & Internet → Privates DNS</li>
+            <li>Wählen Sie die Option „Privater DNS-Anbieter-Hostname“</li>
+            <li>Geben Sie <strong>dns.artikel10.org</strong> ein und speichern Sie</li>
+        </ul>
+        <h2>DoH-Server</h2>
+        <ul>
+            <li>https://odvr.nic.cz/doh</li>
+            <li>https://dns.artikel10.org/dns-query</li>
+            <li>https://protected.canadianshield.cira.ca/dns-query</li>
+            <li>https://dns.dnshome.de/dns-query</li>
+            <li>https://unicast.uncensoreddns.org/dns-query</li>
+        </ul>
+    </div>
+    
+    <div id="en" class="content hidden">
+        <h1>Information and Configuration Guides</h1>
+        <h2>What is DoH (DNS over HTTPS)?</h2>
+        <p>DNS over HTTPS (DoH) is a protocol that encrypts and authenticates the communication between DNS clients and servers using the HTTPS protocol. The goal of DoH is to enhance DNS privacy and security by encrypting query and response payloads and providing authentication of the DNS server identity. This protects DNS queries from eavesdropping and tampering on the network, client, or server side.</p>
+        <p>With DoH, DNS queries are sent over an HTTPS connection, meaning they are encoded in the same format as web requests and are subject to the same encryption and authentication features as web traffic. This makes it more difficult for attackers to intercept or tamper with DNS queries or associate them with users' browsing activities.</p>
+        <h2>Our DoH Servers</h2>
+        <p>No logging, DNSSEC enabled. We host our services in Germany, Norway, Switzerland, Czech Republic, and Denmark, which comply with the strictest personal information privacy laws.</p>
+        <h2>How to Use DoH:</h2>
+        <ul>
+            <li>Open the “Settings” app</li>
+            <li>Go to Network & Internet → Private DNS</li>
+            <li>Select “Private DNS provider hostname”</li>
+            <li>Enter <strong>dns.artikel10.org</strong> and press Save</li>
+        </ul>
+        <h2>DoH Servers</h2>
+        <ul>
+            <li>https://odvr.nic.cz/doh</li>
+            <li>https://dns.artikel10.org/dns-query</li>
+            <li>https://protected.canadianshield.cira.ca/dns-query</li>
+            <li>https://dns.dnshome.de/dns-query</li>
+            <li>https://unicast.uncensoreddns.org/dns-query</li>
+        </ul>
+    </div>
+    
+    <div id="fr" class="content hidden">
+        <h1>Informations et guides de configuration</h1>
+        <h2>Qu'est-ce que DoH (DNS over HTTPS) ?</h2>
+        <p>DNS over HTTPS (DoH) est un protocole qui chiffre et authentifie la communication entre les clients et les serveurs DNS en utilisant le protocole HTTPS. L'objectif de DoH est d'améliorer la confidentialité et la sécurité de DNS en chiffrant les charges utiles des requêtes et des réponses, et en fournissant une authentification de l'identité du serveur DNS. Cela protège les requêtes DNS contre l'écoute et la falsification sur le réseau, le côté client ou serveur.</p>
+        <p>Avec DoH, les requêtes DNS sont envoyées via une connexion HTTPS, ce qui signifie qu'elles sont codées dans le même format que les requêtes web et sont soumises aux mêmes fonctionnalités de cryptage et d'authentification que le trafic web. Cela rend plus difficile pour les attaquants d'intercepter ou de falsifier les requêtes DNS ou de les associer aux activités de navigation des utilisateurs.</p>
+        <h2>Nos serveurs DoH</h2>
+        <p>Pas de journalisation, DNSSEC activé. Nous hébergeons nos services en Allemagne, Norvège, Suisse, République tchèque et Danemark, qui respectent les lois sur la confidentialité des informations personnelles les plus strictes.</p>
+        <h2>Comment utiliser DoH :</h2>
+        <ul>
+            <li>Ouvrez l'application "Paramètres"</li>
+            <li>Allez dans Réseau & Internet → DNS privé</li>
+            <li>Sélectionnez "Nom d'hôte du fournisseur de DNS privé"</li>
+            <li>Entrez <strong>dns.artikel10.org</strong> et appuyez sur Enregistrer</li>
+        </ul>
+        <h2>Serveurs DoH</h2>
+        <ul>
+            <li>https://odvr.nic.cz/doh</li>
+            <li>https://dns.artikel10.org/dns-query</li>
+            <li>https://protected.canadianshield.cira.ca/dns-query</li>
+            <li>https://dns.dnshome.de/dns-query</li>
+            <li>https://unicast.uncensoreddns.org/dns-query</li>
+        </ul>
+    </div>
+    
+    <div id="zh" class="content">
+        <h1>信息和配置指南</h1>
+        <h2>什么是 DoH (DNS over HTTPS)？</h2>
+        <p>DNS over HTTPS （DoH） 是一种使用 HTTPS（HTTP over Transport Layer Security）协议对 DNS 客户端和服务器之间的通信进行加密和身份验证的协议。DoH 的目标是通过加密查询和响应有效负载以及提供 DNS 服务器身份的身份验证来提高 DNS 的隐私和安全性。这样就可以保护 DNS 查询在网络和客户端或服务器端免受窃听和篡改。</p>
+        <p>使用 DoH，DNS 查询通过 HTTPS 连接发送，这意味着它们以与 Web 请求相同的格式进行编码，并受到与 Web 流量相同的加密和身份验证功能的约束。这会使攻击者更难拦截或篡改 DNS 查询，或将查询与用户的浏览活动相关联。</p>
+        <h2>我们的 DoH 服务器</h2>
+        <p>无日志记录，启用 DNSSEC，我们托管由于德国，挪威，瑞士，捷克，丹麦遵守最严格的个人信息隐私法。</p>
+        <h2>如何使用 DoH：</h2>
+        <ul>
+            <li>打开“设置”应用</li>
+            <li>转到 网络和互联网 → 私有 DNS</li>
+            <li>选择“私有 DNS 提供商主机名”</li>
+            <li>输入 <strong>dns.artikel10.org</strong>，然后按“保存”</li>
+        </ul>
+        <h2>DoH-Server</h2>
+        <ul>
+            <li>https://odvr.nic.cz/doh</li>
+            <li>https://dns.artikel10.org/dns-query</li>
+            <li>https://protected.canadianshield.cira.ca/dns-query</li>
+            <li>https://dns.dnshome.de/dns-query</li>
+            <li>https://unicast.uncensoreddns.org/dns-query</li>
+        </ul>
+    </div>
+</body>
+</html>
