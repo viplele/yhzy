@@ -23,8 +23,8 @@
 				</div>
 				<div class="content">
 					<div class="inner">
-						<h1>Le Swinton引导页</h1>
-						<p>欢迎使用我们的加密DNS和PP邮箱</p>
+						<h1>ALOER DNS & ALOER MAIL</h1>
+						<p>欢迎访问 aloer！我们提供先进的私人DNS和邮箱服务，采用自主的分层架构和高效的路由引擎，确保您的在线活动既安全又高效。我们的平台致力于为公众提供无缝连接和可靠的技术支持，让您的网络体验更加自由和稳定</p>
 					</div>
 				</div>
 				<nav>
@@ -43,19 +43,108 @@
 			<!-- Footer -->
 			<footer id="footer">
 				<p class="copyright">
-					您的IP：
-					<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+					
+					
+				
+				        您的IP地址是：<span id="user-ip">加载中...</span><br>
+				        您的位置是：<span id="user-location">加载中...</span>
+		
+				    <script>
+				        // 定义一个函数来获取并更新 IP 地址和地理位置信息
+				        function getIpAddress() {
+				            fetch('http://ip-api.com/json/')
+				                .then(response => response.json())  // 解析 JSON 响应
+				                .then(data => {
+				                    if (data.status === 'success') {
+				                        const ip = data.query;  // 获取返回的 IP 地址
+				                        const country = data.country;  // 国家
+				                        const region = data.regionName;  // 地区
+				                        const city = data.city;  // 城市
+				                        const isp = data.isp;  // 运营商
+				
+				                        // 更新页面显示
+				                        document.getElementById('user-ip').textContent = ip;
+				                        document.getElementById('user-location').textContent = `${country} ${region} ${city} ${isp}`;
+				                    } else {
+				                        document.getElementById('user-ip').textContent = '无法获取 IP 地址';
+				                        document.getElementById('user-location').textContent = '无法获取地理位置信息';
+				                    }
+				                })
+				                .catch(error => {
+				                    // 如果请求失败，显示错误信息
+				                    document.getElementById('user-ip').textContent = '无法获取 IP 地址';
+				                    document.getElementById('user-location').textContent = '无法获取地理位置信息';
+				                    console.error('获取 IP 失败:', error);
+				                });
+				        }
+				
+				        // 页面加载时立即调用一次获取 IP 地址和地理位置信息
+				        getIpAddress();
+				
+				        // 定时每 30 分钟获取一次新的 IP 地址和地理位置信息
+				        setInterval(getIpAddress, 1800000);
+				    </script>
+				
+
+			
 					<script type="text/javascript">
 						document.write(returnCitySN["cip"]);
 					</script>
 				</p>
+				
 				<p class="copyright">
+					<script>
+						var mydate = new Date();
+						document.writeln("Autonomous Layered Online Email Routing Engine&nbsp;&nbsp;");
+					</script>
+				</p>
+				<p class="copyright" id="random-quote">加载中...</p>
+				
+				<script>
+				    // 定义一个包含多条中文诗句或文案的数组
+				    const quotes = [
+				        "生活不会辜负每一个努力追梦的人。",
+				        "无论多么艰难，坚持下去，总会迎来曙光。",
+				        "每一次努力，都是幸运的伏笔。",
+				        "相信自己，你比想象中更强大。",
+				        "生活总会给你另一个机会，这个机会叫明天。",
+				        "困难是人生的试金石，磨砺出坚强的你。",
+				        "每一天都是新的开始，拥抱美好，迎接挑战。",
+				        "无论多远的路，脚步不停，终会到达。",
+				        "阳光总在风雨后，保持微笑，迎接未来。",
+				        "失败只是成功的铺路石，坚持就是胜利。",
+				        "生活不会亏待每一个努力的人，未来会更好。",
+				        "相信自己，未来可期。",
+				        "每一次跌倒，都是为了更好地站起来。",
+				        "心怀梦想，脚踏实地，未来可期。",
+				        "无论多么黑暗，星星总会在夜空中闪烁。",
+				        "生活就像一杯茶，苦也好，甜也罢，都是滋味。",
+				        "每一次努力，都是在为未来铺路。",
+				        "相信明天会更好，今天的努力终会有回报。",
+				        "生活不会辜负每一个努力追梦的人，坚信未来会更好。"
+				    ];
+
+				
+				    // 定义一个函数来随机选择并显示一条语句
+				    function displayRandomQuote() {
+				        const randomIndex = Math.floor(Math.random() * quotes.length);
+				        const quote = quotes[randomIndex];
+				        document.getElementById('random-quote').textContent = quote;
+				    }
+				
+				    // 页面加载时立即显示一条随机语句
+				    window.onload = displayRandomQuote;
+				
+				    // 每6秒刷新一次，显示新的随机语句
+				    setInterval(displayRandomQuote, 6000);
+				</script>
+
+<p class="copyright">
 					<script>
 						var mydate = new Date();
 						document.writeln("Copyright&nbsp;&copy;&nbsp;2021 - " + mydate.getFullYear() + "&nbsp;LeSwinton<br />All&nbsp;Rights&nbsp;Reserved");
 					</script>
 				</p>
-				<p class="copyright">你在阳光下盛放 而我在阴郁的天空下自得其乐</p>
 				<p class="copyright">
 					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2971802058&amp;site=qq&amp;menu=yes"> <img src="images\svg\qq.svg" width="30" alt="QQ" title="QQ" />&nbsp;&nbsp;</a> <a target="_blank" href="mailto:le@parl.pp.ua"> <img src="images\svg\mail.svg" width="30" alt="Mail" title="Mail" />&nbsp;&nbsp;</a> <a target="_blank" href="/money_receiving_QR_code"> <img src="images\svg\money_receiving_QR_code.svg" width="30" alt="给我打钱" title="给我打钱" />&nbsp;&nbsp;</a> <a target="_blank" href="https://parl.pp.ua"> <img src="images\svg\github.svg" width="30" alt="Github" title="Github" />&nbsp;&nbsp;</a> <a target="_blank" href="https://parl.pp.ua"> <img src="images\svg\gitee.svg" width="30" alt="Gitee" title="Gitee" />&nbsp;&nbsp;</a> <a target="_blank" href="http://parl.pp.ua"> <img src="images\svg\coolapk.svg" width="30" alt="Coolapk" title="Coolapk" /></a>
 				</p>
