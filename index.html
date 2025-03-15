@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>ALOER DNS & ALOER MAIL</title>
+		<title>Le Swinton引导页</title>
 		<meta name="description" content="那些暗潮汹涌的 见不得人的 无法诉之于口的才是我真正的生活|关键词：Le Swinton,dns" />
 		<meta charset="utf-8" />
 		<meta http-equiv="content-language" content="zh-cn" />
@@ -19,7 +19,7 @@
 			<!-- Header -->
 			<header id="header">
 				<div class="icon">
-					<img src="images/ficon-fa-gem.png" alt="ALOER DNS & ALOER MAIL" title="ALOER DNS & ALOER MAIL" class="logo" />
+					<img src="images/ficon-fa-gem.png" alt="Le Swinton引导页" title="Le Swinton引导页" class="logo" />
 				</div>
 				<div class="content">
 					<div class="inner">
@@ -44,46 +44,45 @@
 			<footer id="footer">
 				<p class="copyright">
 					
-					
+				    您的IP地址是：<span id="user-ip">加载中...</span><br>
+				    您的位置是：<span id="user-location">加载中...</span>
+				</p>
 				
-				        您的IP地址是：<span id="user-ip">加载中...</span><br>
-				        您的位置是：<span id="user-location">加载中...</span>
-		
-				    <script>
-				        // 定义一个函数来获取并更新 IP 地址和地理位置信息
-				        function getIpAddress() {
-				            fetch('http://ip-api.com/json/')
-				                .then(response => response.json())  // 解析 JSON 响应
-				                .then(data => {
-				                    if (data.status === 'success') {
-				                        const ip = data.query;  // 获取返回的 IP 地址
-				                        const country = data.country;  // 国家
-				                        const region = data.regionName;  // 地区
-				                        const city = data.city;  // 城市
-				                        const isp = data.isp;  // 运营商
+				<script>
+				    // 定义一个函数来获取并更新 IP 地址和地理位置信息
+				    function getIpAddress() {
+				        fetch('https://ip.011102.xyz/')
+				            .then(response => response.json())  // 解析 JSON 响应
+				            .then(data => {
+				                if (data.IP) {
+				                    const ip = data.IP.IP;  // 获取返回的 IP 地址
+				                    const country = data.IP.Country;  // 国家
+				                    const region = data.IP.Region;  // 地区
+				                    const city = data.IP.City;  // 城市
 				
-				                        // 更新页面显示
-				                        document.getElementById('user-ip').textContent = ip;
-				                        document.getElementById('user-location').textContent = `${country} ${region} ${city} ${isp}`;
-				                    } else {
-				                        document.getElementById('user-ip').textContent = '无法获取 IP 地址';
-				                        document.getElementById('user-location').textContent = '无法获取地理位置信息';
-				                    }
-				                })
-				                .catch(error => {
-				                    // 如果请求失败，显示错误信息
+				                    // 更新页面显示
+				                    document.getElementById('user-ip').textContent = ip;
+				                    document.getElementById('user-location').textContent = `${country} ${region} ${city}`;
+				                } else {
 				                    document.getElementById('user-ip').textContent = '无法获取 IP 地址';
 				                    document.getElementById('user-location').textContent = '无法获取地理位置信息';
-				                    console.error('获取 IP 失败:', error);
-				                });
-				        }
+				                }
+				            })
+				            .catch(error => {
+				                // 如果请求失败，显示错误信息
+				                document.getElementById('user-ip').textContent = '无法获取 IP 地址';
+				                document.getElementById('user-location').textContent = '无法获取地理位置信息';
+				                console.error('获取 IP 失败:', error);
+				            });
+				    }
 				
-				        // 页面加载时立即调用一次获取 IP 地址和地理位置信息
-				        getIpAddress();
+				    // 页面加载时立即调用一次获取 IP 地址和地理位置信息
+				    getIpAddress();
 				
-				        // 定时每 30 分钟获取一次新的 IP 地址和地理位置信息
-				        setInterval(getIpAddress, 1800000);
-				    </script>
+				    // 定时每 30 分钟获取一次新的 IP 地址和地理位置信息
+				    setInterval(getIpAddress, 1800000);
+				</script>
+
 				
 
 			
