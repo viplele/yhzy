@@ -11,7 +11,17 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background: url('images/cy.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
+        h1, h2, p, ul, li {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
         h1, h2 {
             color: #2c3e50;
         }
@@ -20,10 +30,13 @@
             padding: 0;
         }
         li {
-            background: #ecf0f1;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
+             background: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                margin: 5px 0;
+                padding: 10px;
+                border-radius: 10px;
+                color: #2c3e50;
         }
         a {
             color: #2980b9;
@@ -50,18 +63,39 @@
             font-size: 18px;
             font-weight: bold;
         }
+		.language-selector button {
+		    background: rgba(255, 255, 255, 0.2);  /* 半透明背景 */
+		    backdrop-filter: blur(10px);  /* 毛玻璃效果 */
+		    -webkit-backdrop-filter: blur(10px);  /* 对老版本浏览器的兼容 */
+		    border: none;
+		    padding: 10px 20px;
+		    border-radius: 10px;
+		    color: #2c3e50;
+		    font-weight: bold;
+		    cursor: pointer;
+		    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease; /* 增加 transform 和 box-shadow 的过渡 */
+		}
+		
+		.language-selector button:hover {
+		    background: rgba(255, 255, 255, 0.4);  /* 按钮悬停时稍微增加透明度 */
+		}
+		
+		.language-selector button:active {
+		    transform: scale(0.95);  /* 按下时按钮缩小 */
+		    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* 添加按下时的阴影效果 */
+		}
+
+
     </style>
+    
+    <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
+    
     <script>
         function changeLanguage(lang) {
             document.querySelectorAll('.content').forEach(el => el.classList.add('hidden'));
             document.getElementById(lang).classList.remove('hidden');
         }
     </script>
-    <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
-							    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-							    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
-							    <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
-							    <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.0.8/js/maodian.js"></script>
 </head>
 <body>
     <div class="profile">
@@ -79,14 +113,15 @@
     <div id="de" class="content hidden">
         <h1>Informationen und Konfigurationsanleitungen</h1>
         <h2>Was ist DoH (DNS over HTTPS)?</h2>
-        <p>DNS over HTTPS (DoH) ist ein Protokoll, das die Kommunikation zwischen DNS-Clients und -Servern mithilfe des HTTPS-Protokolls verschlüsselt und authentifiziert...</p>
+        <p>DNS over HTTPS (DoH) ist ein Protokoll, das die Kommunikation zwischen DNS-Clients und -Servern mithilfe des HTTPS-Protokolls verschlüsselt und authentifiziert. DoH zielt darauf ab, die Privatsphäre und Sicherheit von DNS durch Verschlüsselung der Anfragen und Antworten sowie durch die Authentifizierung der Identität des DNS-Servers zu verbessern. So wird der Schutz von DNS-Anfragen vor Abhör- und Manipulationsversuchen auf der Netz- sowie der Client- oder Serverseite gewährleistet.</p>
+        <p>Mit DoH werden DNS-Anfragen über eine HTTPS-Verbindung gesendet, was bedeutet, dass sie im gleichen Format wie Web-Anfragen kodiert werden und denselben Verschlüsselungs- und Authentifizierungsmechanismen unterliegen. Dies erschwert es Angreifern, DNS-Anfragen abzufangen oder zu manipulieren oder diese mit dem Surfverhalten der Benutzer in Verbindung zu bringen.</p>
         <h2>Unsere DoH-Server</h2>
-        <p>Kein Logging, DNSSEC aktiviert.</p>
+        <p>Kein Logging, DNSSEC aktiviert, wir hosten aufgrund der strengen Datenschutzgesetze in Deutschland, Norwegen, der Schweiz, der Tschechischen Republik und Dänemark.</p>
         <h2>So verwenden Sie DoH:</h2>
         <ul>
             <li>Öffnen Sie die „Einstellungen“-App</li>
             <li>Gehen Sie zu Netzwerk & Internet → Privates DNS</li>
-            <li>Wählen Sie die Option „Privater DNS-Anbieter-Hostname“</li>
+            <li>Wählen Sie die Option „Privater DNS-Anbieter-Hostname”</li>
             <li>Geben Sie <strong>dns.artikel10.org</strong> ein und speichern Sie</li>
         </ul>
         <h2>DoH-Server</h2>
@@ -97,15 +132,22 @@
             <li>https://dns.dnshome.de/dns-query</li>
             <li>https://unicast.uncensoreddns.org/dns-query</li>
         </ul>
-    </div>
+        <p><strong>Warum ist DNS-Privatsphäre besonders wichtig?</strong> Trotz der Verschlüsselungstransportprotokolle bieten die Datenschutzrichtlinien der DNS-Resolver wichtige Informationen, da der Dienst weiterhin in der Lage ist, DNS-Abfrageprotokolle zu sehen, zu speichern oder zu verwenden, die mit einer einzelnen IP-Adresse oder in einigen Fällen mit einem einzelnen Gerät verknüpft sind. Autor Stan Adams in <a href="https://cdt.org/insights/dns-strengthening-the-weakest-link-in-internet-privacy/" target="_blank">DNS: Stärkung des schwächsten Gliedes in der Internet-Privatsphäre</a></p>
+    <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+	</div>
     
     <div id="en" class="content hidden">
         <h1>Information and Configuration Guides</h1>
         <h2>What is DoH (DNS over HTTPS)?</h2>
-        <p>DNS over HTTPS (DoH) is a protocol that encrypts and authenticates the communication between DNS clients and servers using the HTTPS protocol. The goal of DoH is to enhance DNS privacy and security by encrypting query and response payloads and providing authentication of the DNS server identity. This protects DNS queries from eavesdropping and tampering on the network, client, or server side.</p>
-        <p>With DoH, DNS queries are sent over an HTTPS connection, meaning they are encoded in the same format as web requests and are subject to the same encryption and authentication features as web traffic. This makes it more difficult for attackers to intercept or tamper with DNS queries or associate them with users' browsing activities.</p>
+        <p>DNS over HTTPS (DoH) is a protocol that encrypts and authenticates the communication between DNS clients and servers using the HTTPS protocol. DoH's goal is to improve DNS privacy and security by encrypting queries and responses and authenticating the identity of the DNS server. This helps protect DNS queries from eavesdropping and tampering on both the network and client/server sides.</p>
+        <p>With DoH, DNS queries are sent over an HTTPS connection, meaning they are encoded in the same format as web requests and are subject to the same encryption and authentication features as web traffic. This makes it more difficult for attackers to intercept or tamper with DNS queries or associate them with a user's browsing activity.</p>
         <h2>Our DoH Servers</h2>
-        <p>No logging, DNSSEC enabled. We host our services in Germany, Norway, Switzerland, Czech Republic, and Denmark, which comply with the strictest personal information privacy laws.</p>
+        <p>No logging, DNSSEC enabled, we host due to the strict privacy laws in Germany, Norway, Switzerland, Czech Republic, and Denmark.</p>
         <h2>How to Use DoH:</h2>
         <ul>
             <li>Open the “Settings” app</li>
@@ -121,15 +163,22 @@
             <li>https://dns.dnshome.de/dns-query</li>
             <li>https://unicast.uncensoreddns.org/dns-query</li>
         </ul>
-    </div>
+        <p><strong>Why is DNS privacy particularly important?</strong> Although encryption transport protocols provide privacy and security enhancements, the privacy policies of DNS resolvers are important because the service is still able to view, store, or use DNS query history associated with an individual IP address or, in some cases, with a single device. Author Stan Adams in <a href="https://cdt.org/insights/dns-strengthening-the-weakest-link-in-internet-privacy/" target="_blank">DNS: Strengthening the Weakest Link in Internet Privacy</a></p>
+    <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+	</div>
     
     <div id="fr" class="content hidden">
         <h1>Informations et guides de configuration</h1>
         <h2>Qu'est-ce que DoH (DNS over HTTPS) ?</h2>
-        <p>DNS over HTTPS (DoH) est un protocole qui chiffre et authentifie la communication entre les clients et les serveurs DNS en utilisant le protocole HTTPS. L'objectif de DoH est d'améliorer la confidentialité et la sécurité de DNS en chiffrant les charges utiles des requêtes et des réponses, et en fournissant une authentification de l'identité du serveur DNS. Cela protège les requêtes DNS contre l'écoute et la falsification sur le réseau, le côté client ou serveur.</p>
-        <p>Avec DoH, les requêtes DNS sont envoyées via une connexion HTTPS, ce qui signifie qu'elles sont codées dans le même format que les requêtes web et sont soumises aux mêmes fonctionnalités de cryptage et d'authentification que le trafic web. Cela rend plus difficile pour les attaquants d'intercepter ou de falsifier les requêtes DNS ou de les associer aux activités de navigation des utilisateurs.</p>
+        <p>DNS over HTTPS (DoH) est un protocole qui chiffre et authentifie la communication entre les clients et les serveurs DNS en utilisant le protocole HTTPS. L'objectif de DoH est d'améliorer la confidentialité et la sécurité des DNS en chiffrant les requêtes et les réponses, ainsi qu'en authentifiant l'identité du serveur DNS. Cela permet de protéger les requêtes DNS contre l'écoute clandestine et la falsification sur le réseau et du côté client/serveur.</p>
+        <p>Avec DoH, les requêtes DNS sont envoyées via une connexion HTTPS, ce qui signifie qu'elles sont encodées de la même manière que les requêtes Web et soumises aux mêmes fonctionnalités de cryptage et d'authentification que le trafic Web. Cela rend plus difficile pour les attaquants d'intercepter ou de falsifier les requêtes DNS, ou de les associer à l'activité de navigation d'un utilisateur.</p>
         <h2>Nos serveurs DoH</h2>
-        <p>Pas de journalisation, DNSSEC activé. Nous hébergeons nos services en Allemagne, Norvège, Suisse, République tchèque et Danemark, qui respectent les lois sur la confidentialité des informations personnelles les plus strictes.</p>
+        <p>Pas de journalisation, DNSSEC activé, nous hébergeons en raison des lois strictes sur la vie privée en Allemagne, en Norvège, en Suisse, en République tchèque et au Danemark.</p>
         <h2>Comment utiliser DoH :</h2>
         <ul>
             <li>Ouvrez l'application "Paramètres"</li>
@@ -145,7 +194,14 @@
             <li>https://dns.dnshome.de/dns-query</li>
             <li>https://unicast.uncensoreddns.org/dns-query</li>
         </ul>
-    </div>
+        <p><strong>Pourquoi la confidentialité DNS est-elle particulièrement importante ?</strong> Bien que les protocoles de transport cryptés offrent des améliorations en matière de confidentialité et de sécurité, les politiques de confidentialité des résolveurs DNS sont importantes car le service peut toujours voir, stocker ou utiliser l'historique des requêtes DNS associé à une adresse IP individuelle ou, dans certains cas, à un seul appareil. Auteur Stan Adams dans <a href="https://cdt.org/insights/dns-strengthening-the-weakest-link-in-internet-privacy/" target="_blank">DNS : Renforcer le maillon le plus faible de la confidentialité sur Internet</a></p>
+    <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+	</div>
     
     <div id="zh" class="content">
         <h1>信息和配置指南</h1>
@@ -169,6 +225,13 @@
             <li>https://dns.dnshome.de/dns-query</li>
             <li>https://unicast.uncensoreddns.org/dns-query</li>
         </ul>
-    </div>
+        <p><strong>为什么 DNS 隐私特别重要</strong> 尽管加密传输协议提供了隐私和安全增强功能，但 DNS 解析器的隐私政策很重要，因为该服务仍然能够查看、存储或使用与单个 IP 地址或在某些情况下与单个设备关联的 DNS 查询历史记录。 作者 Stan Adams 在 <a href="https://cdt.org/insights/dns-strengthening-the-weakest-link-in-internet-privacy/" target="_blank">DNS：加强互联网隐私中最薄弱的环节</a></p>
+    <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+       <h4>&nbsp</h4>
+	</div>
 </body>
 </html>
