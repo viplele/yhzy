@@ -44,9 +44,9 @@
 			<footer id="footer">
 				<p class="copyright">
 					
-				    您的IP地址是：<span id="user-ip">加载中...</span><br>
-				    您的位置是：<span id="user-location">加载中...</span>
-				</p>
+				    您的IP地址是：<span id="user-ip">加载中...</span>
+				    <span id="user-location"></span>
+				
 				
 				<script>
 				    // 定义一个函数来获取并更新 IP 地址和地理位置信息
@@ -82,13 +82,6 @@
 				    // 定时每 30 分钟获取一次新的 IP 地址和地理位置信息
 				    setInterval(getIpAddress, 1800000);
 				</script>
-
-				
-
-			
-					<script type="text/javascript">
-						document.write(returnCitySN["cip"]);
-					</script>
 				</p>
 				
 				<p class="copyright">
