@@ -76,6 +76,78 @@
         </div>
     </header>
 
+				    <p>您的IP地址是：<span id="user-ip">加载中...</span>
+				    <span id="user-location"></span></p>
+				
+				
+				<script>
+				    // 定义一个函数来获取并更新 IP 地址和地理位置信息
+				    function getIpAddress() {
+				        fetch('https://ip.011102.xyz/')
+				            .then(response => response.json())  // 解析 JSON 响应
+				            .then(data => {
+				                if (data.IP) {
+				                    const ip = data.IP.IP;  // 获取返回的 IP 地址
+				                    const country = data.IP.Country;  // 国家
+				                    const region = data.IP.Region;  // 地区
+				                    const city = data.IP.City;  // 城市
+				
+				                    // 更新页面显示
+				                    document.getElementById('user-ip').textContent = ip;
+				                    document.getElementById('user-location').textContent = `${country} ${region} ${city}`;
+				                } else {
+				                    document.getElementById('user-ip').textContent = '无法获取 IP 地址';
+				                    document.getElementById('user-location').textContent = '无法获取地理位置信息';
+				                }
+				            })
+				            .catch(error => {
+				                // 如果请求失败，显示错误信息
+				                document.getElementById('user-ip').textContent = '无法获取 IP 地址';
+				                document.getElementById('user-location').textContent = '无法获取地理位置信息';
+				                console.error('获取 IP 失败:', error);
+				            });
+				    }
+				
+				    // 页面加载时立即调用一次获取 IP 地址和地理位置信息
+				    getIpAddress();
+				
+				    // 定时每 30 分钟获取一次新的 IP 地址和地理位置信息
+				    setInterval(getIpAddress, 1800000);
+				</script>
+
+<script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
+    <script>
+        function changeLanguage(lang) {
+            document.querySelectorAll('.content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(lang).classList.remove('hidden');
+        }
+    </script>
+</head>
+
+
+
+<script>
+    // 定义一个函数来获取并更新 IP 地址
+    function getIpAddress() {
+        fetch('https://2024.ipchaxun.com/')
+            .then(response => response.json())  // 解析 JSON 响应
+            .then(data => {
+                const ip = data.ip;  // 获取返回的 IP 地址
+                document.getElementById('user-ip').textContent = ip;  // 更新页面显示
+            })
+            .catch(error => {
+                // 如果请求失败，仍然显示无法获取
+                document.getElementById('user-ip').textContent = '无法获取 IP 地址';
+            });
+    }
+
+    // 页面加载时立即调用一次获取 IP 地址
+    getIpAddress();
+
+    // 定时每 30 秒获取一次新的 IP 地址
+    setInterval(getIpAddress, 30000);
+</script>
+
     <div class="container">
         <h1>隐私策略</h1>
         
