@@ -11,7 +11,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: url('images/cy.jpg') no-repeat center center fixed;
+            background: no-repeat center center fixed;
             background-size: cover;
         }
 		h1, h2, p, ul, li ,header,.footer{
@@ -21,6 +21,12 @@
 		    padding: 10px;
 		    border-radius: 10px;
 		}
+		html {
+		    background: no-repeat center center fixed;
+		    background-size: cover;
+		    background-attachment: fixed; /* 确保背景不会随滚动移动 */
+		}
+
 		
         header {
             display: flex;
@@ -64,14 +70,31 @@
         }
     </style>
 </head>
+<script>
+    (function() {
+        // 壁纸列表
+        const images = ["background1.jpg", "background2.jpg", "background3.jpg", "background4.jpg", "background5.jpg", 
+                        "background6.jpg", "background7.jpg", "background8.jpg", "background9.jpg", "background10.jpg"];
+        
+        // 随机选择一张壁纸
+        let randomImage = images[Math.floor(Math.random() * images.length)];
+
+        // 设置背景
+        document.documentElement.style.backgroundImage = `url('images/${randomImage}')`;
+    })();
+</script>
+
 <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.0.8/js/maodian.js"></script>
 <body>
     <header>
         <div class="profile">
-            <img src="images/ficon-fa-gem.png" alt="Avatar">
+          <a href="https://parl.top" target="_blank">
+              <img src="images/ficon-fa-gem.png" alt="Avatar">
+          </a>
+
             <div>
                 <span>Le Swinton</span><br>
-                <small>lele@krutt.org</small>
+                <a href="mailto:lele@krutt.org">lele@krutt.org</a>
             </div>
         </div>
     </header>
