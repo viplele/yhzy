@@ -124,6 +124,45 @@
     </script>
 </head>
 
+<script src="https://unpkg.com/oh-my-live2d@latest"></script>
+<script>
+  // 预先创建 Live2D 的 stage 样式，避免加载后出现左侧漂移动画
+  (function () {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      #oml2d-stage {
+        position: fixed !important;
+        right: 10px !important;
+        bottom: 0 !important;
+        left: auto !important;
+        transform: none !important;
+        opacity: 0; /* 先隐藏，防止动画 */
+      }
+    `;
+    document.head.appendChild(style);
+  })();
+
+  OML2D.loadOml2d({
+    models: [
+      {
+        path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
+        position: [0, 60], // 这里的 position 依旧写，防止 Live2D 需要默认值
+        scale: 0.064, // 缩小 20%
+        stageStyle: {
+          height: 360
+        }
+      }
+    ]
+  });
+
+  // 等待 Live2D 初始化后，显示模型
+  setTimeout(() => {
+    const stage = document.getElementById('oml2d-stage');
+    if (stage) {
+      stage.style.opacity = '1'; // 渐显
+    }
+  }, 300); // 确保加载完毕后再显示
+</script>
 
 
 <script>
